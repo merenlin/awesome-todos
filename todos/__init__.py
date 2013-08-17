@@ -6,3 +6,6 @@ app.config['SECRET_KEY'] = 'random'
 app.debug = True
 toolbar = DebugToolbarExtension(app)
 from todos.controllers import *
+from todos.database import db
+db.drop_all()
+db.create_all()

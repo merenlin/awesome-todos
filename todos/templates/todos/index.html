@@ -1,10 +1,17 @@
 {% extends "layout/layout.html" %}
 {% block body %}
-    <form action="{{ url_for('main') }}" method="post">
+    <form action="{{ url_for('add_todo') }}" method="post">
         {{ form.csrf_token }}
         <dl>
-            <dd>{{ form.text.label }} {{ form.text(size=50) }} {{ render_error(form.text) }}</dd>
+            <dd>{{ form.title(size=50) }} {{ render_error(form.title) }}</dd>
             <dd><input type="submit" value="Add todo"/></dd>
         </dl>
     </form>
+    <div class="items">
+    <ul> 
+     {% for item in items %}
+            <li class="item">{{ item }}</li>
+     {% endfor %}
+    </ul>
+   </div>
 {% endblock %}
