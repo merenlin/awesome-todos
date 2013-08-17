@@ -1,0 +1,22 @@
+<!doctype html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <title>Awesome todos</title>
+    </head>
+    <body>    
+        <div class="wrapper">
+            <h1>Todos</h1>
+            
+            {% macro render_error(field) %}
+                {% if field.errors %}
+                    {% for error in field.errors %}<span class='error'>{{ error }}</span>{% endfor %}
+                {% endif %}
+            {% endmacro %}
+            {% block body %}{% endblock %}
+        </div> 
+        <footer> 
+            <a href="http://www.merenlin.com">by Merenlin &reg;</a>
+        </footer>
+       
+    </body>
+</html>

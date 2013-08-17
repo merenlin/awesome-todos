@@ -1,0 +1,45 @@
+body {
+    font-family: sans-serif;
+    background: #f6f5f5;
+}
+
+h1,h2 {
+    font-family: 'PT Sans', serif;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.5em;
+    color: #333;
+    border-bottom: 1px dashed #ccc;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+
+.wrapper {
+    margin: 2em auto;
+    width: 35%;
+    border: 1px solid #ccc;
+    padding: 0.8em;
+    background: white;
+}
+
+.error {
+    background: #F0D6D6;
+    padding: 0.5em;
+}
+
+footer {
+    clear:both;
+    text-align: center;
+    font-size: 0.5em;
+}
+
+footer a {
+    color: #333;
+}
