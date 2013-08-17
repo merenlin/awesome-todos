@@ -1,4 +1,3 @@
-from sqlalchemy import Column, Integer, String
 from todos.database import db
 
 class Todo(db.Model):
