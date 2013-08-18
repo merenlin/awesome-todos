@@ -17,7 +17,7 @@ class Todo(db.Model):
     def __init__(self, userId=None, title=None):
         self.userId = userId
         self.title = title
-        self.status = 0
+        self.done = False
 
     def __repr__(self):
         return '%r' % (self.title)
