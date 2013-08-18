@@ -21,7 +21,7 @@
 
         model: Todo,
         
-        url: '/',
+        url: '/api',
 
         done: function() {
             return this.filter(function(todo) { return todo.get('done'); });
@@ -137,6 +137,7 @@
                     remaining:  self.todos.remaining().length
                 };
             console.log("loading stats")
+            console.log(this.todos)
             this.$('#todo_stats').template(TEMPLATE_URL + '/templates/stats.html', data);
             
             return this;
@@ -149,6 +150,8 @@
         },
 
         addAll: function() {
+        	console.log("addALl")
+        	console.log(this.todos)
             this.todos.each(this.addOne);
         },
 

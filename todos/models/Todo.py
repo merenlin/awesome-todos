@@ -1,4 +1,5 @@
 from todos.database import db
+import json
 
 class Todo(db.Model):
     " Actual todo items "
@@ -6,6 +7,7 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer)
     title = db.Column(db.String(120))
+    done = db.Column(db.Boolean)
 
     def getAll(self):
         return self.query.all()
@@ -20,4 +22,4 @@ class Todo(db.Model):
         self.done = False
 
     def __repr__(self):
-        return '%r' % (self.title)
+        return '%r' % (self.__dict__)
