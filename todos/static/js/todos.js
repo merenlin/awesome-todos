@@ -21,7 +21,7 @@
 
         model: Todo,
         
-        url: '/api',
+        url: '/api/',
 
         done: function() {
             return this.filter(function(todo) { return todo.get('done'); });
@@ -41,7 +41,13 @@
 
         comparator: function(todo) {
             return todo.get('order');
-        }
+        },
+
+        // Backbone collection expects data to be an array
+        // Flask does not agree, so we need to parse
+        parse: function(data) {
+    		return data.todos;
+  		}
 
     });
 
@@ -60,9 +66,11 @@
         },
 
         render: function() {
+        	console.log("render TodoView")
             var self = this;
-            
+            console.log(self.model.toJSON());
             $(self.el).template(TEMPLATE_URL + '/templates/item.html', self.model.toJSON(), function() {
+            	console.log("load item tpl")
                 self.setTitle();
             });
             
@@ -71,7 +79,7 @@
 
         setTitle: function() {
             var title = this.model.get('title');
-            console.log("set title")
+            console.log("set title TodoView")
             console.log(title)
             this.$('.todo_title').text(title);
             this.input = this.$('.todo_input');
@@ -119,17 +127,20 @@
         },
 
         initialize: function() {
+        	this.todos.fetch();
+        	console.log("initialize TodoApp")
             this.input = this.$("#todo_title");
 
             this.todos.bind('add',   this.addOne, this);
             this.todos.bind('reset', this.addAll, this);
             this.todos.bind('all',   this.render, this);
             this.delegateEvents();
-            this.todos.fetch();
+            
         },
 
 
         render: function() {
+
             var self = this,
                 data = {
                     total:      self.todos.length,
@@ -137,21 +148,23 @@
                     remaining:  self.todos.remaining().length
                 };
             console.log("loading stats")
-            console.log(this.todos)
+            console.log("todos")
+            console.log(this.todos.toJSON())
             this.$('#todo_stats').template(TEMPLATE_URL + '/templates/stats.html', data);
-            
+            console.log("rendered the page")
             return this;
         },
 
         addOne: function(todo) {
         	console.log("addOne");
+        	console.log("todo being added")
+        	console.log(todo.toJSON())
             var view = new TodoView({model: todo});
             this.$("#todo_list").append(view.render().el);
         },
 
         addAll: function() {
         	console.log("addALl")
-        	console.log(this.todos)
             this.todos.each(this.addOne);
         },
 
