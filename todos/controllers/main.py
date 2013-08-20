@@ -1,4 +1,4 @@
-""" API controller for the 'Awesome Todos' web. """
+""" API controller for the 'Awesome Todos' web app. """
 
 from todos import app
 from todos.models.Todo import Todo
@@ -12,7 +12,7 @@ def main():
 
 @app.route('/api/', methods=['GET'])
 def get_todos():
-    """Fetching the current state of the db. """
+    """ Fetching the current state of the db. """
     todos = Todo()
     items = todos.getAll()     
     return jsonify(todos=items)
