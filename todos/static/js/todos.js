@@ -66,12 +66,9 @@
         },
 
         render: function() {
-        	console.log("render TodoView")
             var self = this;
-            console.log(self.model.toJSON());
             $(self.el).template(TEMPLATE_URL + '/templates/item.html', self.model.toJSON(), function() {
-            	console.log("load item tpl")
-                self.setTitle();
+            	self.setTitle();
             });
             
             return this;
@@ -79,8 +76,6 @@
 
         setTitle: function() {
             var title = this.model.get('title');
-            console.log("set title TodoView")
-            console.log(title)
             this.$('.todo_title').text(title);
             this.input = this.$('.todo_input');
             this.input.bind('blur', _.bind(this.close, this)).val(title);
@@ -118,7 +113,7 @@
         
         el: $("#todos_app"),
         
-        todos: new TodoList(),
+        todos: new TodoList({parse:true}),
 
         events: {
             "keypress #todo_title":  "createOnEnter",
@@ -127,49 +122,41 @@
         },
 
         initialize: function() {
-        	this.todos.fetch();
-        	console.log("initialize TodoApp")
-            this.input = this.$("#todo_title");
+        	var self = this;
+            self.el = $('#todos_app');
+            self.delegateEvents();
+                
+            self.input = self.$("#todo_title");
 
-            this.todos.bind('add',   this.addOne, this);
-            this.todos.bind('reset', this.addAll, this);
-            this.todos.bind('all',   this.render, this);
-            this.delegateEvents();
-            
+            self.todos.bind('add',   self.addOne, self);
+            self.todos.bind('reset', self.addAll, self);
+            self.todos.bind('all',   self.render, self);
+
+            self.todos.fetch();
         },
 
 
         render: function() {
-
             var self = this,
                 data = {
                     total:      self.todos.length,
                     done:       self.todos.done().length,
                     remaining:  self.todos.remaining().length
                 };
-            console.log("loading stats")
-            console.log("todos")
-            console.log(this.todos.toJSON())
             this.$('#todo_stats').template(TEMPLATE_URL + '/templates/stats.html', data);
-            console.log("rendered the page")
             return this;
         },
 
         addOne: function(todo) {
-        	console.log("addOne");
-        	console.log("todo being added")
-        	console.log(todo.toJSON())
             var view = new TodoView({model: todo});
             this.$("#todo_list").append(view.render().el);
         },
 
         addAll: function() {
-        	console.log("addALl")
             this.todos.each(this.addOne);
         },
 
         createOnEnter: function(e) {
-        	console.log("createOnEnter")
             var title = this.input.val();
             
             if (!title || e.keyCode !== 13) {
@@ -181,7 +168,6 @@
         },
 
         createOnBtn: function(e) {
-        	console.log("createOnBtn")
             var title = this.input.val();
             
             if (!title) {
