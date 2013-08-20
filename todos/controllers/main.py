@@ -4,7 +4,6 @@ from todos import app
 from todos.models.Todo import Todo
 from flask import render_template, request, jsonify
 
-
 @app.route('/', methods=['GET'])
 def main():
     """ Index page loader. """
@@ -25,16 +24,13 @@ def add_todo():
     todo_json = todo.add()
     return jsonify(todo=todo_json)
 
-
 @app.route('/api/<todo_id>', methods=['GET'])
 def get_todo(todo_id):
     """ Get a todo by id call. """
     todos = Todo()
     todo = todos.get(todo_id)
-
     if todo is None:
         return jsonify(response=404)
-    
     return jsonify(todo=todo)
 
 @app.route('/api/<todo_id>', methods=['PUT'])
