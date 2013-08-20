@@ -27,10 +27,12 @@ ul {
 
 .wrapper {
     margin: 2em auto;
-    width: 35%;
+    width: 30%;
     border: 1px solid #ccc;
     padding: 0.8em;
     background: white;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 .error {
@@ -39,28 +41,35 @@ ul {
 }
 
 #todo_title {
-    width: 70%;
+    width: 65%;
     font-size: 18px;
     font-family: inherit;
     line-height: 1em;
     border: 0;
     outline: none;
     padding: 5px;
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 20px;
     border: 1px solid #999999;
     -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
     -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
     -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
     box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 #add_button {
+    display: inline-block;
     width: 25%;
-    margin-left: 20px;
-    padding: 5px;
+    margin-left: 5px;
+    padding: 10px;
     background-color: #dad9d8;  
     cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 #todo_list {

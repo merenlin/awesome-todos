@@ -26,8 +26,11 @@ class Todo(db.Model):
         db.session.commit()
         return self.toJSON()
 
+    def delete(self,todo_id):
+        self.query.filter_by(id=todo_id).delete()
+        db.session.commit()
+
     def update(self, todo_id, new_fields):
-        todo = self.get(todo_id)
         self.query.filter_by(id=todo_id).update(new_fields)
         db.session.commit()
 
