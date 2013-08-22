@@ -2,14 +2,11 @@
 {% block body %}
 	<div id="todos_app">
         <div id="create_todo">
-            <input id="todo_title" placeholder="What do you want todo?" type="text" />
+            <input id="todo_title" placeholder="What needs to get done?" type="text" />
            <span id="add_button"><a>Add Todo</a></span>
         </div>
         <div id="todos">
             <ul id="todo_list"> 
-             {% for item in items %}
-                    <li>{{ item }}</li>
-             {% endfor %}
             </ul>
        </div>
         <div id="todo_stats"></div>
