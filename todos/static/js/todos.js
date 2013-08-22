@@ -58,6 +58,7 @@
         events: {
             "click .check"              : "toggleDone",
             "dblclick div.todo_title"    : "edit",
+            "click span.todo-destroy"   : "clear",
             "keypress .todo_input"      : "updateOnEnter"
         },
 
@@ -117,7 +118,7 @@
 
         events: {
             "keypress #todo_title":  "createOnEnter",
-            "click .todo_clear a": "clearCompleted",
+            "click .todo_clear a": "markAllComplete",
             "click #add_button a": "createOnBtn",
         },
 
@@ -178,8 +179,8 @@
             this.input.val('');
         },
 
-        clearCompleted: function() {
-            _.each(this.todos.done(), function(todo) { todo.destroy(); });
+        markAllComplete: function() {
+        	this.todos.each(function(todo){ todo.save({done: true}); });
             return false;
         },
         

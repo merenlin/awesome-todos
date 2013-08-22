@@ -1,6 +1,6 @@
 <div class="todo <%= done ? 'done' : '' %>">
     <div class="display">
-        <input class="check" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
+        <span class="checkbox check"  <%= done ? 'checked="checked"' : '' %>><input class="check" type="checkbox" <%= done ? 'checked="checked"' : '' %> /></span>
         <div class="todo_title"></div>
     </div>
     <div class="edit">
