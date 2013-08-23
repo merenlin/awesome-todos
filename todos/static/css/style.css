@@ -39,16 +39,17 @@ ul {
 }
 
 #create_todo {
-     padding: 5px;
+     padding: 10px;
 }
 
 #todo_title {
-    width: 65%;
+    width: 62%;
     font-size: 18px;
     font-family: inherit;
     line-height: 1.3em;
     outline: none;
-    padding: 5px;
+    padding: 7px;
+    margin-left: 10px;
     margin-top: 20px;
     border: 1px solid #999999;
     -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
@@ -61,10 +62,13 @@ ul {
 
 #add_button {
     display: inline-block;
-    width: 25%;
-    margin-left: 5px;
-    padding: 10px;
-    background-color: #dad9d8;  
+    width: 28%;
+    margin-left: 7px;
+    padding-top: 11px;
+    padding-bottom: 9px;
+    background-color: #ccc;
+    color: #333;
+    background-image: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.5) 51%);
     cursor: pointer;
     text-align: center;
     font-size: 14px;
@@ -127,11 +131,12 @@ input[type="checkbox"] {
     display:none;
 }
 #todo_list .checkbox {
-    top: 3px;
+    top: 2px;
+    margin-left: 10px;
     background-color: #fafafa;
     border: 1px solid #cacece;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
-    padding: 10px;
+    padding: 8px;
     border-radius: 3px;
     display: inline-block;
     position: relative;
@@ -147,8 +152,8 @@ input[type="checkbox"] {
     content: '\2713';
     font-size: 25px;
     position: absolute;
-    top: 0px;
-    left: 3px;
+    top: -2px;
+    left:0px;
     color: #003366;
 }
 #todo_list .done .checkbox {
@@ -167,6 +172,7 @@ input[type="checkbox"] {
 }
 
 #todo_list .todo_title {
+    margin-left: 5px;
     display: inline-block;
     width: 90%;
 }
@@ -174,18 +180,18 @@ input[type="checkbox"] {
     float: right;
     content: '\2630';
     font-size: 18px;
-    color: #777777;
+    color: #cccccc;
 }
 #todo_list .done .todo_title {
 text-decoration: line-through;
-color: #777777;
+color: #cccccc;
 }
 
 
 #todo_stats {
-  *zoom: 1;
-  margin-top: 10px;
-  padding: 10px;
+  border-top: 1px dashed #ccc;
+  margin-top: 50px;
+  padding: 20px;
   color: #777777;
 }
 #todo_stats:after {
@@ -199,19 +205,16 @@ color: #777777;
 #todo_stats .todo_count {
     float: left;
 }
-#todo_stats .todo_count .number {
-    font-weight: bold;
-    color: #333333;
-}
+
 #todo_stats .todo_clear {
-float: right;
+    float: right;
 }
 #todo_stats .todo_clear a {
-  color: #777777;
-  font-size: 12px;
+  color: #6699ff;
+  text-decoration: none;
 }
   #todo_stats .todo_clear a:visited {
-    color: #777777;
+    color: #6699ff;
   }
   #todo_stats .todo_clear a:hover {
     color: #336699;
