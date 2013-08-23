@@ -15,8 +15,13 @@ To run the app:
 
 Backlog: 
 1. Fix unittests, they are messing with the production database
+
 2. Add frontend tests with Selenium
+
 3. Test the layout in different browsers
+
 4. Implement markAllIncomplete/markAllComplete toggle 
+
 ....
+
 Implement removing todos
