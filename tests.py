@@ -47,11 +47,10 @@ class TestTodos(unittest.TestCase):
         response_dict = json.loads(response.data)
 
         right_resp=dict()
-        right_resp['todo'] = dict()
-        right_resp['todo']['title'] = 'new todo item';
-        right_resp['todo']['done'] =  False;
-        right_resp['todo']['order'] = None;
-        right_resp['todo']['id'] = 4;
+        right_resp['title'] = 'new todo item';
+        right_resp['done'] =  False;
+        right_resp['order'] = None;
+        right_resp['id'] = 4;
         
         self.assertEqual(right_resp,response_dict)
 

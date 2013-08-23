@@ -180,8 +180,7 @@
         },
 
         markAllComplete: function() {
-        	this.todos.each(function(todo){ todo.save({done: true}); });
-            return false;
+        	this.todos.each(function(todo){ if (!todo.get('done')) { todo.save({done: true}); }});
         },
         
     });

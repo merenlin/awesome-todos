@@ -22,12 +22,11 @@ def add_todo():
     data = request.json
     todo = Todo(title=data['title'])
     todo_json = todo.add()
-    return jsonify(todo=todo_json)
+    return jsonify(todo_json)
 
 @app.route('/api/<todo_id>', methods=['GET'])
 def get_todo(todo_id):
     """ Get a todo by id call. """
-    print todo_id
     todos = Todo()
     todo = todos.get(todo_id)
     if todo is None:
