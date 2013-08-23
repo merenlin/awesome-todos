@@ -53,9 +53,25 @@ class TestTodos(unittest.TestCase):
         right_resp['todo']['order'] = None;
         right_resp['todo']['id'] = 4;
         
-        print response_dict
         self.assertEqual(right_resp,response_dict)
 
+    def test_update_todo(self):
+        data = dict()
+        data['title'] = 'new title';
+        data['done'] =  False;
+        data['order'] = 1;
+
+        todo_testid = 1
+        response = self.app.put('/api/'+str(todo_testid), data=json.dumps(data), 
+        content_type='application/json')
+        response_dict = json.loads(response.data)
+
+        self.assertEqual(dict(response='OK'),response_dict)
+        
+        todos = Todo()
+        todo = todos.get(todo_testid)
+        self.assertEqual(todo['title'],data['title'])
+        self.assertEqual(todo['order'],data['order'])
 
 if __name__ == '__main__':
     unittest.main()

@@ -27,6 +27,7 @@ def add_todo():
 @app.route('/api/<todo_id>', methods=['GET'])
 def get_todo(todo_id):
     """ Get a todo by id call. """
+    print todo_id
     todos = Todo()
     todo = todos.get(todo_id)
     if todo is None:
