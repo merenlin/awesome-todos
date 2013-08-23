@@ -14,7 +14,8 @@ To run the app:
 
 
 Backlog: 
-1. Fix unittests, they are messing with the production database
+
+1. Fix unittests, they are messing with production database
 
 2. Add frontend tests with Selenium
 
@@ -24,4 +25,4 @@ Backlog:
 
 ....
 
-Implement removing todos
+5. Implement removing todos
