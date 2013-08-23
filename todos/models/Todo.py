@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from todos.database import db
 import json
 
@@ -35,17 +37,18 @@ class Todo(db.Model):
         db.session.commit()
 
     def toJSON(self):
-        todo_json = {}
+        todo_json = dict()
         todo_json['id'] = self.id
         todo_json['title'] = self.title
         todo_json['done'] = self.done
-        todo_json['order'] = self.done
+        todo_json['order'] = self.order
         return todo_json
 
-    def __init__(self, userId=None, title=None):
+    def __init__(self, userId=1, title=None, order=None):
         self.userId = userId
         self.title = title
         self.done = False
+        self.order = order
 
     def __repr__(self):
         return '%r' % (self.__dict__)
