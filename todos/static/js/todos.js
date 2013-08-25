@@ -32,6 +32,7 @@
         },
         
         nextOrder: function() {
+        	console.log(this.length)
             if (!this.length) { 
                 return 1; 
             }
@@ -54,6 +55,12 @@
     var TodoView = Backbone.View.extend({
 
         tagName:  "li",
+        className: 'ui-state-default',
+        attributes: function() {
+  			return {
+    			"data-id": this.model.id
+  			};
+		},
 
         events: {
             "click .check"              : "toggleDone",
@@ -64,6 +71,7 @@
 
         initialize: function() {
             this.model.bind('change', this.render, this);
+			this.model.bind('destroy', this.remove, this);
         },
 
         render: function() {
@@ -116,10 +124,16 @@
         
         todos: new TodoList({parse:true}),
 
+        isSyncing: false,
+ 
+   		orderAttr: 'order',
+ 
+
         events: {
             "keypress #todo_title":  "createOnEnter",
             "click .todo_clear a": "markAllComplete",
             "click #add_button a": "createOnBtn",
+            'sortupdate':  'handleSortComplete',
         },
 
         initialize: function() {
@@ -132,7 +146,9 @@
             self.todos.bind('add',   self.addOne, self);
             self.todos.bind('reset', self.addAll, self);
             self.todos.bind('all',   self.render, self);
+            self.todos.bind('sync reset', self.listSync, self);
 
+            self.listSync();
             self.todos.fetch();
         },
 
@@ -145,6 +161,10 @@
                     remaining:  self.todos.remaining().length
                 };
             this.$('#todo_stats').template(TEMPLATE_URL + '/templates/stats.html', data);
+            this.$( ".ui-sortable" ).sortable();
+    		this.$( ".ui-sortable" ).disableSelection();
+  
+            //this.$el.sortable({ containment: 'parent', tolerance: 'pointer' });
             return this;
         },
 
@@ -182,6 +202,32 @@
         markAllComplete: function() {
         	this.todos.each(function(todo){ if (!todo.get('done')) { todo.save({done: true}); }});
         },
+
+        listSync: function () {
+ 		   this.isSyncing = true;
+
+ 		   // Remove the views 
+ 		   this.$("#todo_list").empty()
+		   // Add all the views back
+		   this.addAll();
+		 
+		   this.isSyncing = false;		 
+		},
+
+		handleSortComplete: function () {
+ 
+		   var oatr = this.orderAttr;
+		   var collection = this.todos;
+		   todo_views = this.$("#todo_list").children(); 
+		   todo_views.each(function(i,elm) {
+		   		item_id = $(elm).data('id');
+		   		// set new order to the models	
+		   		item = collection.get(item_id);
+		   		item.save({order:i});
+		      });
+
+		   this.todos.sort({silent: true});
+		},
         
     });
     

@@ -20,7 +20,7 @@ def get_todos():
 def add_todo():
     """ Adding a new todo item with default user set. """
     data = request.json
-    todo = Todo(title=data['title'])
+    todo = Todo(title=data['title'],order=data['order'])
     todo_json = todo.add()
     return jsonify(todo_json)
 
