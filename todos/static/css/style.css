@@ -84,23 +84,6 @@ ul {
   margin-top: 10px;
 }
 
-/*#todo_list li {
-    padding: 12px 20px 11px 0;
-    position: relative;
-    font-size: 18px;
-    line-height: 1em;
-}
-*/
-/*
-#todo_list li:after {
-#  content: "\0020";
-  display: block;
-  height: 0;
-  clear: both;
-  overflow: hidden;
-  visibility: hidden;
-}
-*/
 #todo_list li.editing {
   padding: 0;
   border-bottom: 0;
@@ -176,7 +159,7 @@ input[type="checkbox"] {
     display: inline-block;
     width: 90%;
 }
-#todo_list .todo_title:after {
+#todo_list .todo_title:hover:after {
     float: right;
     content: '\2630';
     font-size: 18px;

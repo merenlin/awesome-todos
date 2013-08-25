@@ -32,7 +32,6 @@
         },
         
         nextOrder: function() {
-        	console.log(this.length)
             if (!this.length) { 
                 return 1; 
             }
